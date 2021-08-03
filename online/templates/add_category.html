@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Content Category
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <section class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Trade Nepal</a></li>
+          <li>Trade Bulletin</li>
+        </ol>
+        <h2>Add Category</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+    <br/><br/><br/><br/><br/>
+    
+      <form method="POST">
+        <div class="form-group p-5 ">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button class="btn btn-primary">Post</button>
+        </div>
+      </form>
+    
+
+      
+    
+{% else %}
+<section class="breadcrumbs">
+  <div class="container">
+
+    <ol>
+      <li><a href="{%url 'home'%}">Home</a></li>
+      <li>Blog</li>
+    </ol>
+    <h2>Login to Add post</h2>
+
+  </div>
+</section><!-- End Breadcrumbs -->
+{% endif %}
+{% endblock content %}

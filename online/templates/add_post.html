@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ post.title_tag }}
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <section class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Trade Nepal</a></li>
+          <li>Trade Bulletin</li>
+        </ol>
+        <h2>Post a content</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+    <br/><br/><br/><br/><br/>
+    
+      <form method="POST" enctype="multipart/form-data">
+        <div class="form-group p-5 ">
+          {% csrf_token %}
+          {{ form.media }}
+          {{ form.as_p }}
+          <button class="btn btn-primary">Post</button>
+        </div>
+      </form>
+    <script> 
+        var name = "{{ user.id }}"
+        document.getElementById("elder").value
+            = name;
+    
+    </script>
+
+      
+    
+{% else %}
+<section class="breadcrumbs">
+  <div class="container">
+
+    <ol>
+      <li><a href="{%url 'home'%}">Home</a></li>
+      <li>Blog</li>
+    </ol>
+    <h2>Login to Add post</h2>
+
+  </div>
+</section><!-- End Breadcrumbs -->
+{% endif %}
+{% endblock content %}
